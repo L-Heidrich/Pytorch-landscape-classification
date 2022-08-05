@@ -1,20 +1,25 @@
 # Pytorch-landscape-classification
 
 ## Task:
-Using a recurrent neural network to classify landscapes with Pytorch <br>
+Using a neural network to classify landscapes with Pytorch <br>
 
 ## Description: <br>
-During this project I have used methods like gradient clipping and using a [cyclic learning rate](https://arxiv.org/abs/1506.01186). <br>
+During this project I developedp a model which can distinguish between different landscapes. It gets an image as an input and then outputs one of 6 classes. 
 
 The data can be found here: <br>
 https://www.kaggle.com/code/hahmed747/intel-image-classification-fastai <br>
 
+## Details: 
+
+The first architecture I have used was a regular CNN which failed the converge to a reasonable accuracy. I therfore used this opportunity to get my hands on one of the more advanced architectures, the "ResNet" which improved the accuracy of the model quite a lot. The current version of the model has 4 residual blocks which are implemented in a way that even after rescaling the output dimensions, the previous layer to be added and the output still form an identity. More details and the implementation can be found in the src folder.  <br>
+
+Regular training did not suffice in order to reach a good accuracy so I have used methods like gradient clipping and using a [cyclic learning rate](https://arxiv.org/abs/1506.01186). <br>
 The model eventually reached a 95% training accuracy and a 75% testing accuracy. <br>
-My first thought that this might be due to overfitting but after further data augmentation the model still failed to generalize. </b>
-Upon observing the test set further I have found out that many images have the wrong label which lead to the wrong classifications. </br>
+My first thought was that this might be due to overfitting but after further data augmentation the model still failed to generalize. </b>
+Upon observing the test set further I have found out that many images have been assigned wrong labels which lead to wrong classifications. </br>
 
 ### Sidenotes:
-I have impmented some helper and utility functions in scripts which can be found in the src folder. They serve the purpose of keeping the notebook as clean as possible and for validation. The notebook describes how to use the functions. 
+I have impmented some helper and utility functions in scripts which can be found in the src folder. They serve the purpose of keeping the notebook as clean as possible and for validation. The notebook describes how to use these functions. 
 
 
 ## Next steps:
