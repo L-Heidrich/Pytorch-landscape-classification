@@ -4,7 +4,7 @@
 Using a recurrent neural network to classify landscapes with Pytorch <br>
 
 ## Description: <br>
-During this project I have used methods like gradient clipping and using a cyclic learning rate. <br>
+During this project I have used methods like gradient clipping and using a [cyclic learning rate](https://arxiv.org/abs/1506.01186). <br>
 
 The data can be found here: <br>
 https://www.kaggle.com/code/hahmed747/intel-image-classification-fastai <br>
