@@ -126,6 +126,18 @@ def get_lr(optimizer):
 class ResidualBlock(nn.Module):
 
     def __init__(self, channels, resize):
+
+        """
+            Module class for a single residual block.
+            "resize" denotes a boolean which determines whether the input should be scaled to a different output size.
+
+            "channels" is an array which contains up to 3 different integers which determine the input and output dimensions.
+            Example: channels[0] = input dimension, channels[1] = intermediate scaling, channels[2] = output dimension
+
+            In case of resize == False:
+            channels[0] = input dimension, channels[1] = output dimension, channels[2] = unused
+        """
+
         super().__init__()
 
         self.resize = resize
