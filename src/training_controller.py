@@ -2,9 +2,10 @@ import torch
 import torchvision
 import matplotlib.pyplot as plt
 import torch.nn as nn
-from . helper_funcs import get_lr, calculate_accuracy
+from .helper_funcs import get_lr, calculate_accuracy
 from datetime import datetime
 import timeit
+import numpy as np
 
 torch.cuda.empty_cache()
 
@@ -12,8 +13,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class Trainer:
-    def __init__(self, model, train_location, test_location, eval_location,
-                 transform, eval_transform, batch_size, loss_function, optimizer, epochs, scheduler=None, gradient_clipping=False):
+    def __init__(self, model, train_location, test_location,
+                 transform, eval_transform, batch_size, loss_function, optimizer, epochs, eval_location=None,
+                 scheduler=None, gradient_clipping=False):
 
         self._model = model
         self._epochs = epochs
@@ -37,9 +39,10 @@ class Trainer:
         self._testloader = torch.utils.data.DataLoader(self._testset, batch_size=self._batch_size,
                                                        shuffle=True, pin_memory=True)
 
-        self._evalset = torchvision.datasets.ImageFolder(root=eval_location, transform=eval_transform)
-        self._evaloader = torch.utils.data.DataLoader(self._evalset, batch_size=self._batch_size,
-                                                      shuffle=True, pin_memory=True)
+        if eval_location:
+            self._evalset = torchvision.datasets.DatasetFolder(root=eval_location, transform=eval_transform)
+            self._evaloader = torch.utils.data.DataLoader(self._evalset, batch_size=self._batch_size,
+                                                          shuffle=True, pin_memory=True)
 
         self._model.to(device)
 
@@ -77,7 +80,7 @@ class Trainer:
             acc = calculate_accuracy(self._trainloader, self._model)
             loss = running_loss / len(self._trainloader)
             self._losses.append(loss)
-            self._accs.append(acc*0.1)
+            self._accs.append(acc * 0.1)
 
             now = datetime.now()
 
@@ -90,8 +93,6 @@ class Trainer:
         """
         Function to determine most efficient numbers of workers
         num workers > 0 slowed down the training process drastically. Probably due to windows OS.
-
-
         """
         arr = [12, 20, 22]
 
@@ -103,7 +104,57 @@ class Trainer:
             for epoch in range(8):
                 for i, batch in enumerate(self._trainloader):
                     pass
+
             print(f"Num workers: {i}, time taken {starttime - timeit.default_timer()}")
+
+    def visualize_incorrectly_classified_images(self, n):
+
+        """
+        :param dataloader: dataloader from which the data is drawn from
+        :param model: model to test on
+        :param n: number of random images to be visualized
+        """
+        wrong_images = []
+        wrong_labels = []
+
+        with torch.no_grad():
+            for images, labels in self._testloader:
+                images, labels = images.to('cuda'), labels.to('cuda')
+                outputs = self._model(images)
+                _, predicted = torch.max(outputs.data, 1)
+
+                for i in range(len(images)):
+                    if labels[i].item() is not predicted[i].item():
+                        wrong_images.append(images[i])
+                        wrong_labels.append({"predicted_label": predicted[i].item(),
+                                             "actual_label": labels[i].item()})
+
+        wrong_images = torch.stack(wrong_images)
+        wrong_images = wrong_images.cpu()
+
+        random_indexes = np.random.randint(len(wrong_images), size=n)
+        columns = 5 if n >= 5 else n
+        rows = n // 5 if n > 5 else 1
+        fig, ax = plt.subplots(nrows=rows, ncols=columns, figsize=[50, 50])
+
+        pred_translator = {
+            0: "buildings",
+            1: "forest",
+            2: "glacier",
+            3: "mountain",
+            4: "sea",
+            5: "street",
+        }
+
+        for i, axi in enumerate(ax.flat):
+            img = wrong_images[random_indexes[i]]
+            img = img.permute(1, 2, 0)
+
+            axi.imshow(img)
+            axi.set_title(f"Pred: {pred_translator[wrong_labels[i]['predicted_label']]},"
+                          f" Label: {pred_translator[wrong_labels[i]['actual_label']]}", fontsize=40)
+
+        plt.show()
 
     def visualize_results(self):
 
@@ -114,3 +165,6 @@ class Trainer:
 
     def getModel(self):
         return self._model
+
+    def setModel(self, model):
+        self._model = model
