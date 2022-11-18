@@ -86,7 +86,6 @@ class Trainer:
 
             print(f"Epoch [{epoch}]: loss: {loss}, time finished: {now}, learning "
                   f"rate: {get_lr(self._optimizer)}, train acc {acc} %")
-            running_loss = 0.0
 
     def test_dataloader_speed(self):
 
