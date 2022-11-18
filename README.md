@@ -14,7 +14,8 @@ https://www.kaggle.com/code/hahmed747/intel-image-classification-fastai <br>
 The first architecture I have used was a regular CNN which failed the converge to a reasonable accuracy. I therfore used this opportunity to get my hands on one of the more advanced architectures, the "ResNet" which improved the accuracy of the model quite a lot. The current version of the model has 4 residual blocks which are implemented in a way that even after rescaling the output dimensions, the previous layer to be added and the output still form an identity. More details and the implementation can be found in the src folder.  <br>
 
 Regular training did not suffice in order to reach a good accuracy so I have used methods like gradient clipping and using a [cyclic learning rate](https://arxiv.org/abs/1506.01186). <br>
-The model eventually reached a 95% training accuracy and a 75% testing accuracy. <br>
+The model eventually reached a 95% training accuracy and a 75% testing accuracy on a resnet built and trained by myself. <br>
+As a comparison I have now finetuned ResNet50 with its original weights over 20~ epochs which reaches an 85% accuracy.
 My first thought was that this might be due to overfitting but after further data augmentation the model still failed to generalize. </b>
 Upon observing the test set further I have found out that many images have been assigned wrong labels which lead to wrong classifications. </br>
 
