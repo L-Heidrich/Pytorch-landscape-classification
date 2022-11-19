@@ -15,8 +15,9 @@ The first architecture I have used was a regular CNN which failed the converge t
 
 Regular training did not suffice in order to reach a good accuracy so I have used methods like gradient clipping and using a [cyclic learning rate](https://arxiv.org/abs/1506.01186). <br>
 The model eventually reached a 95% training accuracy and a 75% testing accuracy on a resnet built and trained by myself. <br>
-As a comparison I have finetuned ResNet50 with its original weights over 20~ epochs which reaches a 85% accuracy.
-My first thought was that this might be due to overfitting but after further data augmentation the model still failed to generalize. </b>
+As a comparison I have finetuned ResNet50 with its original weights over 20~ epochs which reaches a 85% accuracy. It has quickly reached that accuracy since the model was able to generalise based on its pretrained weights. <br>
+
+My first thought was that the low accuracy might be due to overfitting but after further data augmentation the model still failed to generalize. </b>
 Upon observing the test set further I have found out that many images have been assigned wrong labels which lead to wrong classifications. </br>
 
 ### Sidenotes:
