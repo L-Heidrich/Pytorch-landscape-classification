@@ -1,0 +1,19 @@
+
+body {
+    background-color: #f8f8f8
+}
+
+.dz {
+    border: dashed;
+    border-color: #ccc;
+    border-radius: 15px;
+
+    width: 50%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;"
+}
+
+.dz:hover {
+    background-color: aliceblue;
+}

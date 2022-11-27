@@ -34,6 +34,7 @@ transform = transforms.Compose(
 
 results_global = []
 
+
 def upload_view(request):
     if request.method == "POST":
         form = ImageForm(request.POST, request.FILES)
@@ -50,7 +51,7 @@ def upload_view(request):
         result = pred_translator[preds.item()]
         results_global.append(result)
         request.session['result'] = results_global
-        #ImageModel.objects.create(img=my_file, name=result)
+        # ImageModel.objects.create(img=my_file, name=result)
         print(result)
     else:
         request.session.flush()

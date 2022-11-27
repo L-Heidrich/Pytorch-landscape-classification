@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+<head>
+        <title>{% block title %}ImageTagger{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+        <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+
+</head>
+<body>
+<div class="bg-image" style="
+
+      max-height: 500px; overflow: hidden;
+      background-repeat: no-repeat;
+    ">
+    <div class="bg-image" style="
+          background-image: url('/static/images/bg.jpg');
+
+          height: 40vh;
+
+          background-repeat: no-repeat;
+        ">
+
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height:100%; background-size:auto;">
+        tag your image
+        </div>
+    </div>
+
+</div>
+                {% block content %}
+                {% endblock %}
+</body>
+</html>
