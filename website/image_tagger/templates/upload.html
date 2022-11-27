@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
+{% load image_tagger_extras %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
+
+ {% block heading %} YOUR RESULTS {% endblock %}
 
     {% block content %}
 
-    <div>Result: {{result}}</div>
+    <div style="margin-top: 10px; margin-left: 10%; margin-right: 10%">
+            {% for i in result %}
 
-    {% endblock %}
+                <div class="result_image">
+                    <img src="{{ i.img.url }}" style="width=20%; height: 200px; border-radius:10px;"/>
+                    <div style="position:absolute; margin-top:10px; ">
+                        {% for tag in i.tags %}
+                            <div class="result-text">
+                                {{ tag }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            {% endfor %}
+
+    </div>
+
+{% endblock %}
+
 </html>

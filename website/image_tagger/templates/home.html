@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 </head>
 
+{% block heading %} TAG YOUR IMAGES {% endblock %}
 
-    {% block content %}
+{% block content %}
+
+<div style="width = 50%;  margin-left: 25%;  margin-right: 25%; ">
+
     <form method="POST" action="/home/" class="dropzone dz" >
         {% csrf_token %}
         <div class="fallback">
@@ -17,11 +21,12 @@
 
     </form>
 
-    <form action="/upload">
-        <input type="submit" value="Tag" />
-    </form>
+    <div style=" margin-top: 20px; margin-left: 30%; margin-right: 30%; width: 40%; height: 50px;">
+        <form action="/upload">
+            <input type="submit" class="submit-button" value="Tag"/>
+        </form>
 
-    <div>Result: {{result}}</div>
-
+    </div>
+</div>
     {% endblock %}
 </html>

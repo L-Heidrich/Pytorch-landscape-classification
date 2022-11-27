@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import ImageModel
+from .models import Images
 
 # Register your models here.
 
-admin.site.register(ImageModel)
+admin.site.register(Images)
+

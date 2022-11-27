@@ -1,5 +1,5 @@
 from django import forms
-from image_tagger.models import ImageModel
+from .models import ImageModel
 
 
 class ImageForm(forms.ModelForm):
