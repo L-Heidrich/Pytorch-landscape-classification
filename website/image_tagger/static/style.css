@@ -34,8 +34,9 @@ body {
     border-radius: 10px;
     border-width: 2px;
     border-color: #9999ff;
-    background-color: white;
+    background-color: #9999ff;
     border-style: solid;
+    color:white;
     font-family: "Monaco", monospace ;
 }
 
@@ -57,7 +58,8 @@ body {
     border-color: #9999ff;
     border-width: 2px;
     float:left;
-    min-width: 100px;
+    min-width: 30px;
+    max-width: 100px;
     margin-right: 10px;
 }
 
