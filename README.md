@@ -7,7 +7,7 @@ Using a neural network to classify landscapes with Pytorch <br>
 During this project I developed a model which can distinguish between different landscapes. It gets an image as an input and then outputs one of 6 classes. 
 
 The data can be found here: <br>
-https://www.kaggle.com/code/hahmed747/intel-image-classification-fastai <br>
+https://www.kaggle.com/datasets/puneet6060/intel-image-classification<br>
 
 ## Details: 
 
