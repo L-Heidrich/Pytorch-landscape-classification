@@ -22,7 +22,7 @@ Upon observing the test set further I have found out that many images have been 
 
 ### Sidenotes:
 I have impmented some helper and utility functions in scripts which can be found in the src folder. They serve the purpose of keeping the notebook as clean as possible and for validation. The notebook describes how to use these functions. 
-
+The website folder contains the django app I created to use the model.
 
 ## Next steps:
 Work on generalization and overfitting.
