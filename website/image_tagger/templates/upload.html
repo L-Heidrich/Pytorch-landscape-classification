@@ -18,14 +18,17 @@
             {% for i in result %}
 
                 <div class="result_image">
-                    <img src="{{ i.img.url }}" style="width=20%; height: 200px; border-radius:10px;"/>
+                    <img src="{{ i.img.url  }}" style="width=20%; height: 200px; border-radius:10px;"/>
                     <div style="position:absolute; margin-top:10px; ">
                         {% for tag in i.tags %}
-                            <div class="result-text">
+
+                        <div class="result-text">
                                 <p style="margin-left: 5px; margin-right: 5px">{{ tag }}</p>
-                            </div>
+                        </div>
                         {% endfor %}
                     </div>
+
+
                 </div>
 
             {% endfor %}
