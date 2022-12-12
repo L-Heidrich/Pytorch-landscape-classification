@@ -4,5 +4,5 @@ For the main projects model I have created a website which lets you upload image
 Main purpose of this website was to practice how such a model would work in production. The website is not hosted anywhere at the moment.
 
 ![image_1](screenshots/Screenshot_2.png)
-![image_2](screenshots/Screenshot_1.png)
+![image_2](screenshots/Screenshot_3.png)
 
