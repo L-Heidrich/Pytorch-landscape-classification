@@ -1,1 +1,0 @@
-web gunicorn image_tagger.wsgi:application --log-file -
